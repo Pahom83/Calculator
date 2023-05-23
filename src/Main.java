@@ -25,15 +25,10 @@ class Calculator {
     BinaryOperator<Integer> minus = (x, y) -> x - y;
     BinaryOperator<Integer> multiply = (x, y) -> x * y;
     BinaryOperator<Integer> divide = (x, y) -> {
-        try {
-            if (y == 0) { // проверка делителя на равенство 0
-                throw new ArithmeticException("Делить на ноль нельзя!!!"); // формируем ошибку при y == 0
-                }
-            return x / y;
-        } catch (ArithmeticException e) {
-            System.out.println(e.getMessage()); // выводим сообщение в случае возникновения ошибки
-            return 0;
+        if (y == 0) { // проверка делителя на равенство 0
+            return Integer.MAX_VALUE;
         }
+        return x / y;
     };
 
     UnaryOperator<Integer> pow = x -> x * x;
